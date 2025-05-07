@@ -4,6 +4,7 @@ import { Request, Response } from 'express';
 import checkForIntegration from "./googleAiGen";
 import {getAppComponents, getAppData, getApps, searchApp} from "./pipedreamFunctions";
 import {mainFlow} from "./mainFlow";
+import {createWorkflow} from "./n8nFunctions";
 var cors = require('cors');
 
 
@@ -64,3 +65,9 @@ app.post("/checkIntegration", async (req: Request, res: Response) => {
     const llmResponse = await mainFlow(data.prompt);
     res.status(200).send(llmResponse);
 });
+
+
+app.post("/n8n", async (req: Request, res: Response) => {
+    const data = await createWorkflow("very new!!", "n8n-nodes-base.stripe", "Stripe");
+    res.status(200).send(data);
+})
