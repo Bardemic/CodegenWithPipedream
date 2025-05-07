@@ -6,7 +6,7 @@ export const getApps = async () => {
     try {
         const response = await axios.get('https://api.pipedream.com/v1/apps', {
             headers: {
-                'Authorization': 'Bearer 6961e76d04b9aa07eb5e76bff01f5b1d'
+                'Authorization': `Bearer ${process.env.PIPEDREAM_API_KEY}`
             }
         })
         console.log('response: ', response.data);
